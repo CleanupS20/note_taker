@@ -2,5 +2,10 @@
     {
         "title": "New Note",
         "text": "Press the '+' on the upper right corner to create a new note."
+    },
+    {
+        "title": "New Note 1",
+        "text": "This is a new note",
+        "id": 51
     }
 ]
