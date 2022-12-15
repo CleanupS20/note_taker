@@ -1,15 +1,14 @@
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-const noteData = require('./db/db.json');
-const noteId = require('./helpers/noteId');
 const app = express();
+const noteId = require('./helpers/noteId');
+const noteData = require('./db/db.json');
 
-// Dedicating a port to the server.
+// Server Port
 
 const PORT = process.env.PORT || 3001
 
-// Implementing middleware.
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -27,7 +26,6 @@ app.get('/api/notes', (req, res) =>  fs.readFile('./db/db.json', 'utf-8', (err, 
   
 app.post('/api/notes', (req,res) => {
   
-  console.log(`${req.method} request received to add a note.`);
   const {title , text} = req.body;
   const newNote = {
     title,
@@ -46,8 +44,28 @@ app.post('/api/notes', (req,res) => {
   });
 });
 
+//Delete  notes
 
-// Catch-all route
+app.delete("/api/notes/:id", (req, res) => {
+  fs.readFile("./db/db.json", "utf8", (err, data) => {
+    array = JSON.parse(data);
+   
+    let filter = array.some(obj => obj.id === req.params.id);
+
+    if (filter) {
+      parsedNotes == array.filter(note => note.id != req.params.id);
+    }
+
+    fs.writeFile("./db/db.json", JSON.stringify(parsedNotes), (err) => {
+      if (err) throw err;
+
+      res.json(parsedNotes);
+    })
+  })
+});
+
+
+// All other routes
 
   app.get('*', (req, res) => res.sendFile(path.join(__dirname, './public/index.html')));
 
