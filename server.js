@@ -46,15 +46,11 @@ app.post('/api/notes', (req,res) => {
 
 //Delete  notes
 
-app.delete("/api/notes/:id", (req, res) => {
-  fs.readFile("./db/db.json", "utf8", (err, data) => {
+app.delete('/api/notes/:id', (req, res) => {
+  fs.readFile('./db/db.json', "utf8", (err, data) => {
     array = JSON.parse(data);
-   
-    let filter = array.some(obj => obj.id === req.params.id);
 
-    if (filter) {
-      parsedNotes == array.filter(note => note.id != req.params.id);
-    }
+      parsedNotes = array.filter(note => note.id != req.params.id);
 
     fs.writeFile("./db/db.json", JSON.stringify(parsedNotes), (err) => {
       if (err) throw err;
