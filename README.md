@@ -21,8 +21,9 @@
 
   ## Visuals
 
-  [Screenshot] 
+  ![Landing Page Screenshot](https://github.com/CleanupS20/note_taker/blob/main/public/assets/images/Landingpage%20screenshot.png)
 
+![Notes page Screenshot](https://github.com/CleanupS20/note_taker/blob/main/public/assets/images/Notes%20page%20screenshot.png)
   ## Installation
 
    N/A
